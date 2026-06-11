@@ -145,11 +145,21 @@ function Write-SuccessLog {
     Write-Log -Level ([LogLevel]::SUCCESS) -Message $Message -Time:$Time
 }
 
+function Write-VisualSeparator {
+    [CmdletBinding()]
+    param(
+        [LogLevel]$Level = ([LogLevel]::INFO),
+        [switch]$Time
+    )
+    Write-Log -Level $Level -Message ("-" * 72) -Time:$Time
+}
+
 Export-ModuleMember -Function @(
     "Write-ErrorLog",
     "Write-InfoLog",
     "Write-WarnLog",
     "Write-DebugLog",
     "Write-SuccessLog",
-    "Set-DebugLogging"
+    "Set-DebugLogging",
+    "Write-VisualSeparator"
 ) -Variable * -Alias *
